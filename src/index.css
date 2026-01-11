@@ -1,5 +1,14 @@
 @import "tailwindcss";
-:root {
-  --font-lora: 'Lora', serif;
-}
 
+:root {
+   --font-lora: 'Lora', serif;
+  --text-body: #B6BDC4;
+  --font-body: "Manrope", sans-serif;
+}
+@theme {
+  --color-primary1: #636B2F;
+  --color-primary2: #636B2F;
+  --color-secondary: #3A0E1F;
+  --color-background: #FFFFEE;
+
+}

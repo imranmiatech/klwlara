@@ -6,6 +6,7 @@ import Featured from "../components/Home/Featured";
 import Recent from "../components/Home/Recent";
 import Cta from "../components/Home/Cta";
 
+
 const Home = () => {
     return (
         <div>
@@ -40,6 +41,7 @@ const Home = () => {
           <Featured />
           <Recent/>
           <Cta />
+         
         </div>
     );
 };

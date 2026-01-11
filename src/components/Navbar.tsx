@@ -1,10 +1,10 @@
 
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { FiSearch } from "react-icons/fi"; 
+import { FiSearch } from "react-icons/fi";
 import logo from "../assets/Images/logo.png";
 import { FiX } from "react-icons/fi";
-
+import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi";
 
 const Navbar = () => {
     const sideMenuRef = useRef<HTMLUListElement>(null);
@@ -24,6 +24,7 @@ const Navbar = () => {
     //         sideMenuRef.current.style.transform = "translateX(100%)";
     //     }
     // };
+    const [isOpen, setIsOpen] = useState(false);
     const openMenu = () => {
         if (sideMenuRef.current) {
             sideMenuRef.current.classList.remove("translate-x-full");
@@ -61,9 +62,60 @@ const Navbar = () => {
                         <li className="hover:text-[#636B2F]">
                             <Link to="/">Home</Link>
                         </li>
-                        <li className="hover:text-[#636B2F]">
-                            <Link to="/shop">Shop</Link>
+                        {/* <li className="hover:text-[#636B2F]">
+                            <p>Shop <span onClick={() => setIsOpen(true)}>arrow</span></p>
+                            {isOpen && (
+                                <div className="overlay flex">
+                                    <ul className="overlay-menu">
+                                        <li>New Furnishings</li>
+                                        <li>Shop</li>
+                                       
+                                    </ul>
+                                    <button className="close-btn" onClick={() => setIsOpen(false)}>
+                                        ✕
+                                    </button>
+
+                                    
+                                </div>
+                            )}
+
+                        </li> */}
+                        <li className="relative hover:text-[#636B2F]">
+                            <p className="flex items-center gap-1 cursor-pointer">
+                                Shop
+                                <span onClick={() => setIsOpen(true)}> {isOpen ? (
+                                                <HiOutlineChevronUp className="w-5 h-5" />
+                                              ) : (
+                                                <HiOutlineChevronDown className="w-5 h-5" />
+                                              )}</span>
+                            </p>
+
+                            {isOpen && (
+                                <>
+                                    {/* Overlay background */}
+                                    <div
+                                        className="fixed inset-0 bg-black/40 z-40"
+                                        onClick={() => setIsOpen(false)}
+                                    />
+
+                                    {/* Dropdown / Overlay menu */}
+                                    <div className="absolute top-full left-0 bg-white z-50 shadow-lg p-4">
+                                        <ul className="overlay-menu space-y-2">
+                                            <Link to='/new-furnishings'><li>New Furnishings</li></Link> 
+                                            <Link to='shop'>  <li>Shop</li> </Link>
+                                        </ul>
+
+                                        <button
+                                            className="absolute top-2 right-2 text-lg"
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            ✕
+                                        </button>
+                                    </div>
+                                </>
+                            )}
                         </li>
+
                         <li className="hover:text-[#636B2F]">
                             <Link to="/community">Community</Link>
                         </li>
@@ -84,6 +136,7 @@ const Navbar = () => {
                     {/* Login Button */}
 
                 </div>
+
                 <div className=" gap-x-8 items-center hidden md:flex">
                     <div className="relative">
                         <FiSearch
@@ -104,12 +157,12 @@ const Navbar = () => {
                                     value={searchText}
                                     onChange={(e) => setSearchText(e.target.value)}
                                 />
-                                <button
+                                {/* <button
                                     type="submit"
                                     className="px-4 bg-gray-200 hover:bg-gray-300 cursor-pointer"
                                 >
                                     Go
-                                </button>
+                                </button> */}
                             </form>
                         )}
                     </div>
@@ -154,7 +207,7 @@ const Navbar = () => {
                 className="flex md:hidden flex-col gap-4 py-20 px-10 fixed top-0 right-0 w-64 h-screen z-50 bg-white transition-transform duration-500 transform translate-x-full"
             >
                 <div className="absolute right-6 top-6 cursor-pointer" onClick={closeMenu}>
-                     <FiX className="text-2xl text-gray-700 hover:text-gray-900" />
+                    <FiX className="text-2xl text-gray-700 hover:text-gray-900" />
                 </div>
 
                 <li className="hover:text-[#636B2F]">
